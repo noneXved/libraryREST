@@ -1,43 +1,48 @@
 package com.bibliotekarze.libraryrest.service;
 
-import com.bibliotekarze.libraryrest.dao.UserDAO;
+import com.bibliotekarze.libraryrest.dao.UserRepository;
 import com.bibliotekarze.libraryrest.entity.User;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
 
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
-    public UserServiceImpl(@Qualifier("userDAOJpaImple") UserDAO theUserDAO) {
-        this.userDAO = theUserDAO;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
-    @Transactional
     public List<User> findAll() {
-        return userDAO.findAll();
+        return userRepository.findAll();
     }
 
     @Override
-    @Transactional
     public User findById(int theId) {
-        return userDAO.findById(theId);
+        Optional<User> result = userRepository.findById(theId);
+
+        User theUser = null;
+
+        if (result.isPresent()) {
+            theUser = result.get();
+        } else {
+            throw new RuntimeException("Did not find employee id - " + theId);
+        }
+
+        return theUser;
     }
 
     @Override
-    @Transactional
     public void save(User theUser) {
-        userDAO.save(theUser);
+        userRepository.save(theUser);
     }
 
     @Override
-    @Transactional
     public void deleteById(int theId) {
-        userDAO.deleteById(theId);
+        userRepository.deleteById(theId);
     }
 }

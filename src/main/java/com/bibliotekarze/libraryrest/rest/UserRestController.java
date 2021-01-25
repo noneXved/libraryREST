@@ -1,7 +1,6 @@
 package com.bibliotekarze.libraryrest.rest;
 
 
-import com.bibliotekarze.libraryrest.dao.UserDAO;
 import com.bibliotekarze.libraryrest.entity.User;
 import com.bibliotekarze.libraryrest.service.UserService;
 import org.springframework.web.bind.annotation.*;
