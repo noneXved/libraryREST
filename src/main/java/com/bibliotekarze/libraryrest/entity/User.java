@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 @Getter
 @Setter
 public class User {
@@ -36,4 +36,28 @@ public class User {
     @Column(name = "is_employee")
     private int isEmployee;
 
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String nickname, String password, int isEmployee) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.isEmployee = isEmployee;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", isEmployee=" + isEmployee;
+    }
 }

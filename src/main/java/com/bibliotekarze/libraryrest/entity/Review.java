@@ -26,4 +26,12 @@ public class Review {
     @Column(name = "review")
     private String review;
 
+    @Override
+    public String toString() {
+        return "Review: " +
+                "id=" + id +
+                ", userId=" + userId +
+                ", bookId=" + bookId +
+                ", review='" + review;
+    }
 }

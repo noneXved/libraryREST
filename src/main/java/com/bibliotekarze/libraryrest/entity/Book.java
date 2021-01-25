@@ -26,4 +26,12 @@ public class Book {
     @Column(name = "user_id")
     private int userId;
 
+    @Override
+    public String toString() {
+        return "Book:" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", userId=" + userId;
+    }
 }
