@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserRestController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserRestController(UserService theUserService) {
         this.userService = theUserService;
@@ -61,8 +61,5 @@ public class UserRestController {
 
         return "User with id " + userId + " is deleted.";
     }
-
-
-//    @PostMapping()
 
 }

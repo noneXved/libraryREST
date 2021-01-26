@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImplementation implements UserService{
 
     private UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImplementation(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -25,12 +25,12 @@ public class UserServiceImpl implements UserService{
     public User findById(int theId) {
         Optional<User> result = userRepository.findById(theId);
 
-        User theUser = null;
+        User theUser;
 
         if (result.isPresent()) {
             theUser = result.get();
         } else {
-            throw new RuntimeException("Did not find employee id - " + theId);
+            throw new RuntimeException("Did not find user id - " + theId);
         }
 
         return theUser;
