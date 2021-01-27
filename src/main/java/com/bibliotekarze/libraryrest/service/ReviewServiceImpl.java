@@ -9,11 +9,11 @@ import java.util.Optional;
 
 
 @Service
-public class ReviewServiceImplementation implements ReviewService{
+public class ReviewServiceImpl implements ReviewService{
 
     private final ReviewRepository reviewRepository;
 
-    public ReviewServiceImplementation(ReviewRepository reviewRepository) {
+    public ReviewServiceImpl(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
 
