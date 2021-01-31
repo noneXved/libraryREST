@@ -1,7 +1,8 @@
-package com.bibliotekarze.libraryrest.service;
+package com.bibliotekarze.libraryrest.service.impl;
 
 import com.bibliotekarze.libraryrest.dao.BookRepository;
 import com.bibliotekarze.libraryrest.entity.Book;
+import com.bibliotekarze.libraryrest.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,11 @@ import java.util.Optional;
 
 
 @Service
-public class BookServiceImplementation implements BookService{
+public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
-    public BookServiceImplementation(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

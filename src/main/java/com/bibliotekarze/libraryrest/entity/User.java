@@ -20,6 +20,7 @@ public class User {
     @Column(name = "id")
     private int id;
 
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -38,13 +39,13 @@ public class User {
     @Column(name = "is_employee")
     private int isEmployee;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(
-            name = "user_book",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
-    private List<Book> books;
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+//    @JoinTable(
+//            name = "user_book",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "book_id")
+//    )
+//    private List<Book> books;
 
     public User(String firstName, String lastName, String email, String nickname, String password, int isEmployee) {
         this.firstName = firstName;
