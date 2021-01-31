@@ -1,12 +1,10 @@
 package com.bibliotekarze.libraryrest.dao;
 
-import com.bibliotekarze.libraryrest.entity.Review;
 import com.bibliotekarze.libraryrest.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 //    @Query("SELECT a FROM Author a WHERE firstName = ?1 AND lastName = ?2")

@@ -2,6 +2,7 @@ package com.bibliotekarze.libraryrest.rest;
 
 import com.bibliotekarze.libraryrest.entity.Review;
 import com.bibliotekarze.libraryrest.service.ReviewService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +17,18 @@ public class ReviewRestController {
         this.reviewService = theReviewService;
     }
 
-    @GetMapping("/reviews")
+    @GetMapping(value = "/reviews",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+            )
     public List<Review> findAll() {
         return reviewService.findAll();
     }
 
-    @GetMapping("/reviews/{reviewId}")
+    @GetMapping(value = "/reviews/{reviewId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public Review getReview(@PathVariable int reviewId) {
         Review theReview = reviewService.findById(reviewId);
 
@@ -32,7 +39,10 @@ public class ReviewRestController {
         return theReview;
     }
 
-    @PostMapping("/reviews")
+    @PostMapping(value = "/reviews",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public Review addReview(@RequestBody Review theReview) {
 
         theReview.setId(0);
@@ -41,14 +51,20 @@ public class ReviewRestController {
         return theReview;
     }
 
-    @PutMapping("/reviews")
+    @PutMapping(value = "/reviews",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public Review updateReview(@RequestBody Review theReview) {
         reviewService.save(theReview);
 
         return theReview;
     }
 
-    @DeleteMapping("/reviews/{reviewId}")
+    @DeleteMapping(value = "/reviews/{reviewId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public String deleteReview(@PathVariable int reviewId) {
 
         Review theReview = reviewService.findById(reviewId);

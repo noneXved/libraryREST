@@ -3,6 +3,7 @@ package com.bibliotekarze.libraryrest.rest;
 
 import com.bibliotekarze.libraryrest.entity.Book;
 import com.bibliotekarze.libraryrest.service.BookService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +18,18 @@ public class BookRestController {
         this.bookService = theBookService;
     }
 
-    @GetMapping("/books")
+    @GetMapping(value = "/books",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public List<Book> findAll() {
         return bookService.findAll();
     }
 
-    @GetMapping("/books/{bookId}")
+    @GetMapping(value = "/books/{bookId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public Book getBook(@PathVariable int bookId) {
         Book theBook = bookService.findById(bookId);
 
@@ -33,7 +40,10 @@ public class BookRestController {
         return theBook;
     }
 
-    @PostMapping("/books")
+    @PostMapping(value ="/books",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public Book addBook(@RequestBody Book theBook) {
 
         theBook.setId(0);
@@ -42,14 +52,20 @@ public class BookRestController {
         return theBook;
     }
 
-    @PutMapping("/books")
+    @PutMapping(value = "/books",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public Book updateBook(@RequestBody Book theBook) {
         bookService.save(theBook);
 
         return theBook;
     }
 
-    @DeleteMapping("/books/{bookId}")
+    @DeleteMapping(value = "/books/{bookId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public String deleteBook(@PathVariable int bookId) {
 
         Book theBook = bookService.findById(bookId);

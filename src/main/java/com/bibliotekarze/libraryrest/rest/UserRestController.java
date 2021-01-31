@@ -3,6 +3,7 @@ package com.bibliotekarze.libraryrest.rest;
 
 import com.bibliotekarze.libraryrest.entity.User;
 import com.bibliotekarze.libraryrest.service.UserService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +18,22 @@ public class UserRestController {
         this.userService = theUserService;
     }
 
-    @GetMapping("/users")
+
+    @GetMapping(path = "/users",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    @GetMapping("/users/{userId}")
+//    @GetMapping("/xml/users")
+//    public List<User> findAll() {
+//        return userService.findAll();
+//    }
+
+    @GetMapping(value = "/users/{userId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public User getUser(@PathVariable int userId) {
         User theUser = userService.findById(userId);
 
@@ -33,7 +44,10 @@ public class UserRestController {
         return theUser;
     }
 
-    @PostMapping("/users")
+    @PostMapping(value = "/users",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public User addUser(@RequestBody User theUser) {
 
         theUser.setId(0);
@@ -42,7 +56,10 @@ public class UserRestController {
         return theUser;
     }
 
-    @PostMapping( "/users/register")
+    @PostMapping(value = "/users/register",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+            )
     public User registerUser(@RequestBody User theUser) {
 
         theUser.setId(0);
@@ -51,14 +68,20 @@ public class UserRestController {
         return theUser;
     }
 
-    @PutMapping("/users")
+    @PutMapping(value ="/users",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+            )
     public User updateUser(@RequestBody User theUser) {
         userService.save(theUser);
 
         return theUser;
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping(value = "/users/{userId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
     public String deleteUser(@PathVariable int userId) {
 
         User theUser = userService.findById(userId);
