@@ -12,4 +12,6 @@ public interface ReviewService {
     void save(Review theReview);
 
     void deleteById(int theId);
+
+    List<Review> findReviewsByUserId(int userId);
 }

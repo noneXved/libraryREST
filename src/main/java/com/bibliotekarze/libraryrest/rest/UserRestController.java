@@ -42,6 +42,15 @@ public class UserRestController {
         return theUser;
     }
 
+    @PostMapping( "/users/register")
+    public User registerUser(@RequestBody User theUser) {
+
+        theUser.setId(0);
+        userService.save(theUser);
+
+        return theUser;
+    }
+
     @PutMapping("/users")
     public User updateUser(@RequestBody User theUser) {
         userService.save(theUser);

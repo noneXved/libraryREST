@@ -1,18 +1,29 @@
-package com.bibliotekarze.libraryrest.service;
+package com.bibliotekarze.libraryrest.service.impl;
 
 import com.bibliotekarze.libraryrest.dao.UserRepository;
+import com.bibliotekarze.libraryrest.entity.Review;
 import com.bibliotekarze.libraryrest.entity.User;
+import com.bibliotekarze.libraryrest.service.UserService;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImplementation implements UserService{
+@Transactional
+public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public UserServiceImplementation(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -45,4 +56,11 @@ public class UserServiceImplementation implements UserService{
     public void deleteById(int theId) {
         userRepository.deleteById(theId);
     }
+
+    @Transactional
+    @Override
+    public List<Review> findAllReviews(int userId) {
+       return null;
+    }
+
 }

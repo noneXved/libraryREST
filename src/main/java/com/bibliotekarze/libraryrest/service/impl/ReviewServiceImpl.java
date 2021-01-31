@@ -1,7 +1,8 @@
-package com.bibliotekarze.libraryrest.service;
+package com.bibliotekarze.libraryrest.service.impl;
 
 import com.bibliotekarze.libraryrest.dao.ReviewRepository;
 import com.bibliotekarze.libraryrest.entity.Review;
+import com.bibliotekarze.libraryrest.service.ReviewService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,11 @@ import java.util.Optional;
 
 
 @Service
-public class ReviewServiceImplementation implements ReviewService{
+public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
 
-    public ReviewServiceImplementation(ReviewRepository reviewRepository) {
+    public ReviewServiceImpl(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
 
@@ -45,5 +46,10 @@ public class ReviewServiceImplementation implements ReviewService{
     @Override
     public void deleteById(int theId) {
         reviewRepository.deleteById(theId);
+    }
+
+    @Override
+    public List<Review> findReviewsByUserId(int userId) {
+        return reviewRepository.findReviewsByUserId(userId);
     }
 }
