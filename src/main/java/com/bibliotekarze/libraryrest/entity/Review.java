@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "reviews")
@@ -18,7 +17,6 @@ public class Review {
     @Column(name = "id")
     private int id;
 
-
     @Column(name = "user_id")
     private int userId;
 
@@ -26,7 +24,7 @@ public class Review {
     private int bookId;
 
     @Column(name = "review")
-    private String review;
+    private String text;
 
     @Override
     public String toString() {
@@ -34,6 +32,7 @@ public class Review {
                 "id=" + id +
                 ", userId=" + userId +
                 ", bookId=" + bookId +
-                ", review='" + review;
+                ", review='" + text;
     }
+
 }

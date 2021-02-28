@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -19,7 +18,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
 
     @Column(name = "first_name")
     private String firstName;
@@ -36,8 +34,11 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "is_employee")
-    private int isEmployee;
+    @Column(name = "enabled")
+    private int enabled;
+
+    @Column(name = "authority")
+    private String authority;
 
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 //    @JoinTable(
@@ -47,13 +48,15 @@ public class User {
 //    )
 //    private List<Book> books;
 
-    public User(String firstName, String lastName, String email, String nickname, String password, int isEmployee) {
+    public User(String firstName, String lastName, String email, String nickname, String password, int enabled, String authority) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.nickname = nickname;
         this.password = password;
-        this.isEmployee = isEmployee;
+        this.enabled = enabled;
+        this.authority = authority;
+
     }
 
 
@@ -66,6 +69,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
-                ", isEmployee=" + isEmployee;
+                ", enabled=" + enabled + " authority " + authority;
     }
 }

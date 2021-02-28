@@ -1,8 +1,10 @@
 package com.bibliotekarze.libraryrest.service.impl;
 
 import com.bibliotekarze.libraryrest.dao.UserRepository;
+import com.bibliotekarze.libraryrest.entity.Book;
 import com.bibliotekarze.libraryrest.entity.Review;
 import com.bibliotekarze.libraryrest.entity.User;
+import com.bibliotekarze.libraryrest.exception.UserNotFoundException;
 import com.bibliotekarze.libraryrest.service.UserService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,6 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -34,17 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(int theId) {
-        Optional<User> result = userRepository.findById(theId);
-
-        User theUser;
-
-        if (result.isPresent()) {
-            theUser = result.get();
-        } else {
-            throw new RuntimeException("Did not find user id - " + theId);
-        }
-
-        return theUser;
+        return userRepository.findById(theId)
+                             .orElseThrow(
+                                     () -> new NoSuchElementException("Book with id - " + theId + "doesn't exist"));
     }
 
     @Override
@@ -57,10 +52,15 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(theId);
     }
 
-    @Transactional
+
     @Override
     public List<Review> findAllReviews(int userId) {
-       return null;
+        return null;
+    }
+
+    @Override
+    public List<String> getAllUserBook(int userId) {
+        return userRepository.getAllUserBooks(userId);
     }
 
 }
