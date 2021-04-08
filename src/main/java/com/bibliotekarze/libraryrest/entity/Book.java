@@ -27,22 +27,22 @@ public class Book {
     @Column(name = "author")
     private String author;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-//    @JoinTable(
-//            name = "user_book",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//    private List<User> users;
-//
-//
-//    public void addUsers(User theUser) {
-//        if (users == null) {
-//            users = new ArrayList<>();
-//        }
-//
-//        users.add(theUser);
-//    }
+   @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+   @JoinTable(
+           name = "user_book",
+           joinColumns = @JoinColumn(name = "book_id"),
+           inverseJoinColumns = @JoinColumn(name = "user_id")
+   )
+   private List<User> users;
+
+
+   public void addUsers(User theUser) {
+       if (users == null) {
+           users = new ArrayList<>();
+       }
+
+       users.add(theUser);
+   }
 
 
     @Override
